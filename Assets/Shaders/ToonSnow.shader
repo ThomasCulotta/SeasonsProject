@@ -19,7 +19,7 @@
         _RimColor("Snow Rim Color", Color) = (0.5,0.5,0.5,1)
         _RimPower("Snow Rim Power", Range(0,4)) = 3
         _SnowSize("Snow Amount", Range(-3,3)) = 1
-        _Height("Snow Height", Range(0,0.2)) = 0.1
+        _Height("Snow Height", Range(0,0.025)) = 0.015
 	}
     
 	SubShader
@@ -106,13 +106,14 @@
             half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
 
             // if dot product >= _SnowSize, we turn it into snow
-            half result = 0;//step(_SnowSize - 0.4, dot(o.Normal, _SnowAngle.xyz));
+            half result = step(_SnowSize - 0.4, dot(o.Normal, _SnowAngle.xyz));
 
+            o.Albedo = c.rgb * _Color;
             // blend base snow with top snow based on position
             // outer lerp chooses current Albedo if result is 0 or new snow Albedo if result is 1
-            o.Albedo = lerp(c.rgb * _Color, lerp(_SnowColor * rampS, _TColor * rampS, saturate(localPos.y)), result);
+            o.Albedo = lerp(o.Albedo, lerp(_SnowColor * rampS, _TColor * rampS, saturate(localPos.y)), result);
 
-            o.Normal = lerp(UnpackNormal(tex2D(_NormalTex, IN.uv_Bump)), o.Normal, result);
+            //o.Normal = lerp(UnpackNormal(tex2D(_NormalTex, IN.uv_Bump)), o.Normal, result);
 
             // add glow rimlight to snow
             o.Emission = _RimColor.rgb * pow(rim, _RimPower) * result;
