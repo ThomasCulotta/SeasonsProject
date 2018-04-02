@@ -18,7 +18,7 @@
         _MetallicSnow ("Snow Metallic", Range(0,1)) = 0.0
         _RimColor("Snow Rim Color", Color) = (0.5,0.5,0.5,1)
         _RimPower("Snow Rim Power", Range(0,4)) = 3
-        _SnowSize("Snow Amount", Range(-2,2)) = 1
+        _SnowSize("Snow Amount", Range(-3,3)) = 1
         _Height("Snow Height", Range(0,0.2)) = 0.1
 	}
     
@@ -57,6 +57,7 @@
         struct Input
         {
             float2 uv_MainTex : TEXCOORD0;
+            float2 uv_Bump : TEXCOORD1;
             float3 worldPos;
             float3 viewDir;
             float3 lightDir;
@@ -98,23 +99,20 @@
             float3 localPos = (IN.worldPos - mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz);
 
             // light value for snow toon ramp
-            half d = dot(o.Normal, IN.lightDir)*0.5 + 0.5;
+            half d = dot(o.Normal, IN.lightDir) * 0.5 + 0.5;
 
             half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
             half3 rampS = tex2D(_SnowRamp, float2(d, d)).rgb;
             half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
 
-            o.Albedo = c.rgb * _Color;
-
             // if dot product >= _SnowSize, we turn it into snow
-            half result = step(_SnowSize - 0.4, dot(o.Normal, _SnowAngle.xyz));
+            half result = 0;//step(_SnowSize - 0.4, dot(o.Normal, _SnowAngle.xyz));
 
             // blend base snow with top snow based on position
             // outer lerp chooses current Albedo if result is 0 or new snow Albedo if result is 1
-            o.Albedo = lerp(o.Albedo, lerp(_SnowColor * rampS, _TColor * rampS, saturate(localPos.y)), result);
+            o.Albedo = lerp(c.rgb * _Color, lerp(_SnowColor * rampS, _TColor * rampS, saturate(localPos.y)), result);
 
-
-            /////////o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+            o.Normal = lerp(UnpackNormal(tex2D(_NormalTex, IN.uv_Bump)), o.Normal, result);
 
             // add glow rimlight to snow
             o.Emission = _RimColor.rgb * pow(rim, _RimPower) * result;
