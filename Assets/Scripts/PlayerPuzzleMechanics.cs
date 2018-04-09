@@ -246,7 +246,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private const string FallHolderName   = "FALL_HOLDER=-3";
     private const string WinterHolderName = "WINTER_HOLDER=-4";
 
-    private bool   _isCurrentlyHolding;
     private string _currentlyHeldName;
     
     private AudioSource _soundEffect;
@@ -336,7 +335,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
         print("TryHold: " + objectNameToHold);
 #endif
 
-        if (!_isCurrentlyHolding)
+        if (_currentlyHeldName.Equals(string.Empty))
         {
             _currentlyHeldName = objectNameToHold;
 
@@ -446,13 +445,14 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 #if DEBUG
         print("TryActivate: " + objectNameToActivate);
 #endif
-        if (_isCurrentlyHolding)
+        if (!_currentlyHeldName.Equals(string.Empty))
         {
             int heldId = int.Parse(_currentlyHeldName.Split('=')[1]);
             int objectId = int.Parse(objectNameToActivate.Split('=')[1]);
 
             if (heldId == objectId)
             {
+                print("Equal objects");
                 switch (heldId)
                 {
                     // Fill the watering can
@@ -471,12 +471,12 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     case 1:
                     {
                         _heldWateringCanFull.SetActive(false);
-                        _heldWateringCan.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
                         _soundEffect.PlayOneShot(_wateringSound);
 
                         // Remove barrier
+                        _deadGarden.SetActive(false);
 
                         // Change dead garden to live garden
 
@@ -498,6 +498,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     // Create the axe
                     case 3:
                     {
+                        _axeHead.SetActive(false);
                         _heldAxeHandle.SetActive(false);
                         _heldAxeFinal.SetActive(true);
                         _currentlyHeldName = FinalAxeName;
