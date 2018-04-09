@@ -178,9 +178,31 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     [SerializeField]
     private GameObject _winterHolder;
 
+    [SerializeField]
+    private AudioClip _waterFillingSound;
+
+    [SerializeField]
+    private AudioClip _wateringSound;
+
+    [SerializeField]
+    private AudioClip _sawSound;
+
+    [SerializeField]
+    private AudioClip _choppingSound;
+
+    [SerializeField]
+    private AudioClip _iceMeltingSound;
+
+    [SerializeField]
+    private AudioClip _essenceSound;
+
+    [SerializeField]
+    private AudioClip _essenceHolderSound;
+
     /// <summary>
     /// The empty object from which to raycast
     /// </summary>
+    [SerializeField]
     private Transform _rayOrigin;
 
     /// <summary>
@@ -226,6 +248,8 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
     private bool   _isCurrentlyHolding;
     private string _currentlyHeldName;
+    
+    private AudioSource _soundEffect;
 
     private void Awake()
     {
@@ -307,55 +331,85 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                 {
                     _springEssence.SetActive(false);
                     _heldSpringEssence.SetActive(true);
+
+                    // Play essence sound
+
+
+                    // Open gate
+
                     break;
                 }
                 case SummerEssenceName:
                 {
                     _summerEssence.SetActive(false);
                     _heldSummerEssence.SetActive(true);
+
+                    // Play essence sound
+
+
+                    // Make final bridge
+
                     break;
                 }
                 case FallEssenceName:
                 {
                     _fallEssence.SetActive(false);
                     _heldFallEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
                 case WinterEssenceName:
                 {
                     _winterEssence.SetActive(false);
                     _heldWinterEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
                 case FinalSpringEssenceName:
                 {
                     _finalSpringEssence.SetActive(false);
                     _heldSpringEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
                 case FinalSummerEssenceName:
                 {
                     _finalSummerEssence.SetActive(false);
                     _heldSummerEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
                 case FinalFallEssenceName:
                 {
                     _finalFallEssence.SetActive(false);
                     _heldFallEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
                 case FinalWinterEssenceName:
                 {
                     _finalWinterEssence.SetActive(false);
                     _heldWinterEssence.SetActive(true);
+
+                    // Play essence sound
+
                     break;
                 }
             }
         }
         else
         {
-            // TODO: display "Can't hold" message
+            // TODO: display "Can't hold" message ???
         }
     }
 
@@ -376,6 +430,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWateringCan.SetActive(false);
                         _heldWateringCanFull.SetActive(true);
                         _currentlyHeldName = FullWateringCanName;
+
+                        // Play filling sound
+
                         break;
                     }
 
@@ -385,6 +442,13 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWateringCanFull.SetActive(false);
                         _heldWateringCan.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        // Play watering sound
+
+                        // Remove barrier
+
+                        // Change dead garden to live garden
+
                         break;
                     }
 
@@ -394,6 +458,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWoodLog.SetActive(false);
                         _heldAxeHandle.SetActive(true);
                         _currentlyHeldName = AxeHandleName;
+
+                        // Play saw sound
+
                         break;
                     }
 
@@ -411,6 +478,13 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     {
                         _heldAxeFinal.SetActive(false);
                         _currentlyHeldName = string.Empty;
+
+                        // Play chop sound
+
+                        // Tree falling animation
+
+                        // Remove barrier
+
                         break;
                     }
 
@@ -420,6 +494,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldSpringEssence.SetActive(false);
                         _finalSpringEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        // Play essence holder sound
+
                         break;
                     }
 
@@ -429,6 +506,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldSummerEssence.SetActive(false);
                         _finalSummerEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        // Play essence holder sound
+
                         break;
                     }
 
@@ -438,6 +518,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldFallEssence.SetActive(false);
                         _finalFallEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        // Play essence holder sound
+
                         break;
                     }
 
@@ -447,6 +530,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWinterEssence.SetActive(false);
                         _finalWinterEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        // Play essence holder sound
+
                         break;
                     }
                 }
@@ -456,6 +542,11 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                      objectId == int.Parse(GateLockName.Split('=')[1]))
             {
                 _gateLock.SetActive(false);
+
+                // Play melting (sizzling) sound
+
+                // Open gate
+
             }
         }
     }
