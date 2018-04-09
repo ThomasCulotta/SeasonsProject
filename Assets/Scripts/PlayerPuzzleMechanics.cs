@@ -212,17 +212,17 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private float _maxRayDistance;
 
     // Spring puzzle objects
-    private const string WateringCanName = "WATERING_CAN_EMPTY=0";
-    private const string FountainWaterName = "FOUNTAIN_WATER=0";
+    private const string WateringCanName     = "WATERING_CAN_EMPTY=0";
+    private const string FountainWaterName   = "FOUNTAIN_WATER=0";
     private const string FullWateringCanName = "WATERING_CAN_FULL=1";
-    private const string DeadGardenName = "DEAD_GARDEN=1";
+    private const string DeadGardenName      = "DEAD_GARDEN=1";
 
     // Summer puzzle objects
-    private const string WoodLogName = "WOOD_LOG=2";
-    private const string TableSawName = "TABLE_SAW=2";
-    private const string AxeHandleName = "AXE_HANDLE=3";
-    private const string AxeHeadName = "AXE_HEAD=3";
-    private const string FinalAxeName = "FINAL_AXE=4";
+    private const string WoodLogName    = "WOOD_LOG=2";
+    private const string TableSawName   = "TABLE_SAW=2";
+    private const string AxeHandleName  = "AXE_HANDLE=3";
+    private const string AxeHeadName    = "AXE_HEAD=3";
+    private const string FinalAxeName   = "FINAL_AXE=4";
     private const string BridgeTreeName = "BRIDGE_TREE=4";
 
     // Winter puzzle objects
@@ -259,50 +259,72 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
     private void Start()
     {
-        _wateringCan.name = WateringCanName;
+        _wateringCan.name   = WateringCanName;
         _fountainWater.name = FountainWaterName;
-        _deadGarden.name = DeadGardenName;
+        _deadGarden.name    = DeadGardenName;
+        _woodLog.name       = WoodLogName;
+        _tableSaw.name      = TableSawName;
+        _axeHead.name       = AxeHeadName;
+        _bridgeTree.name    = BridgeTreeName;
+        _gateLock.name      = GateLockName;
+
+        _springEssence.name = SpringEssenceName;
+        _summerEssence.name = SummerEssenceName;
+        _fallEssence.name   = FallEssenceName;
+        _winterEssence.name = WinterEssenceName;
+
+        _springHolder.name = SpringHolderName;
+        _summerHolder.name = SummerHolderName;
+        _fallHolder.name   = FallHolderName;
+        _winterHolder.name = WinterHolderName;
 	}
 	
 	private void Update()
     {
+#if DEBUG
+        Debug.DrawLine(_rayOrigin.position, _rayOrigin.position + _rayOrigin.forward * _maxRayDistance, Color.magenta);
+#endif
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            Physics.Raycast(_rayOrigin.position, Vector3.forward, out hit, _maxRayDistance);
-
-            string hitName = hit.collider.name;
-
-            switch (hitName)
+            if (Physics.Raycast(_rayOrigin.position, _rayOrigin.forward, out hit, _maxRayDistance))
             {
-                case WateringCanName:
-                case WoodLogName:
-                case SpringEssenceName:
-                case SummerEssenceName:
-                case FallEssenceName:
-                case WinterEssenceName:
-                case FinalSpringEssenceName:
-                case FinalSummerEssenceName:
-                case FinalFallEssenceName:
-                case FinalWinterEssenceName:
-                {
-                    TryHold(hitName);
-                    break;
-                }
+#if DEBUG
+                print("Hit: " + hit.collider.name);
+#endif
+                string hitName = hit.collider.name;
 
-                case FountainWaterName:
-                case DeadGardenName:
-                case TableSawName:
-                case AxeHeadName:
-                case BridgeTreeName:
-                case GateLockName:
-                case SpringHolderName:
-                case SummerHolderName:
-                case FallHolderName:
-                case WinterHolderName:
+                switch (hitName)
                 {
-                    TryActivate(hit.collider.name);
-                    break;
+                    case WateringCanName:
+                    case WoodLogName:
+                    case SpringEssenceName:
+                    case SummerEssenceName:
+                    case FallEssenceName:
+                    case WinterEssenceName:
+                    case FinalSpringEssenceName:
+                    case FinalSummerEssenceName:
+                    case FinalFallEssenceName:
+                    case FinalWinterEssenceName:
+                    {
+                        TryHold(hitName);
+                        break;
+                    }
+
+                    case FountainWaterName:
+                    case DeadGardenName:
+                    case TableSawName:
+                    case AxeHeadName:
+                    case BridgeTreeName:
+                    case GateLockName:
+                    case SpringHolderName:
+                    case SummerHolderName:
+                    case FallHolderName:
+                    case WinterHolderName:
+                    {
+                        TryActivate(hit.collider.name);
+                        break;
+                    }
                 }
             }
         }
@@ -310,6 +332,10 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
     private void TryHold(string objectNameToHold)
     {
+#if DEBUG
+        print("TryHold: " + objectNameToHold);
+#endif
+
         if (!_isCurrentlyHolding)
         {
             _currentlyHeldName = objectNameToHold;
@@ -410,10 +436,16 @@ public class PlayerPuzzleMechanics : MonoBehaviour
         {
             // TODO: display "Can't hold" message ???
         }
+#if DEBUG
+        print("Currently Holding: " + _currentlyHeldName);
+#endif
     }
 
     private void TryActivate(string objectNameToActivate)
     {
+#if DEBUG
+        print("TryActivate: " + objectNameToActivate);
+#endif
         if (_isCurrentlyHolding)
         {
             int heldId = int.Parse(_currentlyHeldName.Split('=')[1]);
@@ -548,5 +580,8 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
             }
         }
+#if DEBUG
+        print("Currently Holding: " + _currentlyHeldName);
+#endif
     }
 }
