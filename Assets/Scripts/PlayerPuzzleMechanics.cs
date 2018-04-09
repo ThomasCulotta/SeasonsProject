@@ -237,7 +237,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     // Essences in their holders
     private const string FinalSpringEssenceName = "FINAL_SPRING_ESSENCE=-1";
     private const string FinalSummerEssenceName = "FINAL_SUMMER_ESSENCE=-2";
-    private const string FinalFallEssenceName = "FINAL_FALL_ESSENCE=-3";
+    private const string FinalFallEssenceName   = "FINAL_FALL_ESSENCE=-3";
     private const string FinalWinterEssenceName = "FINAL_WINTER_ESSENCE=-4";
 
     // Essence holders
@@ -254,6 +254,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private void Awake()
     {
         _currentlyHeldName = string.Empty;
+        _soundEffect = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -332,8 +333,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _springEssence.SetActive(false);
                     _heldSpringEssence.SetActive(true);
 
-                    // Play essence sound
-
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     // Open gate
 
@@ -344,8 +344,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _summerEssence.SetActive(false);
                     _heldSummerEssence.SetActive(true);
 
-                    // Play essence sound
-
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     // Make final bridge
 
@@ -356,7 +355,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _fallEssence.SetActive(false);
                     _heldFallEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -365,7 +364,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _winterEssence.SetActive(false);
                     _heldWinterEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -374,7 +373,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _finalSpringEssence.SetActive(false);
                     _heldSpringEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -383,7 +382,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _finalSummerEssence.SetActive(false);
                     _heldSummerEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -392,7 +391,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _finalFallEssence.SetActive(false);
                     _heldFallEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -401,7 +400,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _finalWinterEssence.SetActive(false);
                     _heldWinterEssence.SetActive(true);
 
-                    // Play essence sound
+                    _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
                 }
@@ -431,7 +430,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWateringCanFull.SetActive(true);
                         _currentlyHeldName = FullWateringCanName;
 
-                        // Play filling sound
+                        _soundEffect.PlayOneShot(_waterFillingSound);
 
                         break;
                     }
@@ -443,7 +442,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldWateringCan.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        // Play watering sound
+                        _soundEffect.PlayOneShot(_wateringSound);
 
                         // Remove barrier
 
@@ -459,7 +458,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldAxeHandle.SetActive(true);
                         _currentlyHeldName = AxeHandleName;
 
-                        // Play saw sound
+                        _soundEffect.PlayOneShot(_sawSound);
 
                         break;
                     }
@@ -479,7 +478,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldAxeFinal.SetActive(false);
                         _currentlyHeldName = string.Empty;
 
-                        // Play chop sound
+                        _soundEffect.PlayOneShot(_choppingSound);
 
                         // Tree falling animation
 
@@ -495,7 +494,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSpringEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        // Play essence holder sound
+                        _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
                     }
@@ -507,7 +506,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSummerEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        // Play essence holder sound
+                        _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
                     }
@@ -519,7 +518,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalFallEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        // Play essence holder sound
+                        _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
                     }
@@ -531,7 +530,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalWinterEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        // Play essence holder sound
+                        _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
                     }
@@ -543,7 +542,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             {
                 _gateLock.SetActive(false);
 
-                // Play melting (sizzling) sound
+                _soundEffect.PlayOneShot(_iceMeltingSound);
 
                 // Open gate
 

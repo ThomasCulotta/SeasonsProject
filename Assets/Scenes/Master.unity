@@ -274,7 +274,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12542
+  m_Name: pb_Mesh12696
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7119,7 +7119,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16784
+  m_Name: pb_Mesh13154
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -22738,6 +22738,10 @@ Prefab:
     - {fileID: 5400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &453659658 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 453659657}
 --- !u!1 &467611338
 GameObject:
   m_ObjectHideFlags: 0
@@ -23628,7 +23632,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16366
+  m_Name: pb_Mesh12660
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -23940,6 +23944,14 @@ MonoBehaviour:
   _summerHolder: {fileID: 825330811}
   _fallHolder: {fileID: 119383123}
   _winterHolder: {fileID: 2086704503}
+  _waterFillingSound: {fileID: 8300000, guid: a3f846671ef28432a9482afb336d1704, type: 3}
+  _wateringSound: {fileID: 8300000, guid: 18f1e9d996f5248a890dd14882b54399, type: 3}
+  _sawSound: {fileID: 8300000, guid: f66a6362d91684bb2bc41e448fc67e0f, type: 3}
+  _choppingSound: {fileID: 8300000, guid: 0c5bbcec299be49d29d7274cca70cc4b, type: 3}
+  _iceMeltingSound: {fileID: 8300000, guid: 28623443d904249679821e099edf994e, type: 3}
+  _essenceSound: {fileID: 8300000, guid: 5c5235b408cf04c67b6d3fbae50c18c1, type: 3}
+  _essenceHolderSound: {fileID: 8300000, guid: a7894257df5ca4318b8ebc3d98d4a703, type: 3}
+  _rayOrigin: {fileID: 453659658}
   _maxRayDistance: 0.75
 --- !u!1 &572230004
 GameObject:
@@ -24331,7 +24343,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16864
+  m_Name: pb_Mesh13254
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -24461,7 +24473,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16840
+  m_Name: pb_Mesh13220
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28842,7 +28854,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16458
+  m_Name: pb_Mesh12762
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -32076,7 +32088,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16174
+  m_Name: pb_Mesh12456
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -39446,7 +39458,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16980
+  m_Name: pb_Mesh13390
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -48600,7 +48612,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16530
+  m_Name: pb_Mesh12844
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -53152,7 +53164,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16290
+  m_Name: pb_Mesh12584
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -55850,7 +55862,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16082
+  m_Name: pb_Mesh12354
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -77835,7 +77847,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16754
+  m_Name: pb_Mesh13114
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
