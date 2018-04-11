@@ -357,6 +357,34 @@ public class PlayerPuzzleMechanics : MonoBehaviour
         }
 	}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        int seasonId = int.Parse(other.name.Split('=')[1]);
+
+        switch (seasonId)
+        {
+            case 1:
+            {
+                break;
+            }
+
+            case 2:
+            {
+                break;
+            }
+
+            case 3:
+            {
+                break;
+            }
+
+            case 4:
+            {
+                break;
+            }
+        }
+    }
+
     private void TryHold(string objectNameToHold)
     {
 #if DEBUG
