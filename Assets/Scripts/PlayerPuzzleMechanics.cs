@@ -35,6 +35,12 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private GameObject _deadGarden;
 
     /// <summary>
+    /// The gate at the end of the maze
+    /// </summary>
+    [SerializeField]
+    private Animator _gardenGate;
+
+    /// <summary>
     /// The wood log to pick up
     /// </summary>
     [SerializeField]
@@ -77,10 +83,22 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private GameObject _bridgeTree;
 
     /// <summary>
+    /// The bridge between islands 1 and 3
+    /// </summary>
+    [SerializeField]
+    private Animator _finalBridge;
+
+    /// <summary>
     /// The frozen gate lock
     /// </summary>
     [SerializeField]
     private GameObject _gateLock;
+
+    /// <summary>
+    /// The winter gate
+    /// </summary>
+    [SerializeField]
+    private Animator _winterGate;
 
     /// <summary>
     /// The spring essence to find
@@ -172,6 +190,20 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     [SerializeField]
     private GameObject _fallHolder;
 
+    // TEMP //////////////////////
+    [SerializeField]
+    private GameObject _springEnvironment;
+
+    [SerializeField]
+    private GameObject _summerEnvironment;
+
+    [SerializeField]
+    private GameObject _fallEnvironment;
+
+    [SerializeField]
+    private GameObject _winterEnvironment;
+    // TEMP //////////////////////
+
     /// <summary>
     /// The winter essence holder
     /// </summary>
@@ -246,13 +278,19 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private const string FallHolderName   = "FALL_HOLDER=-3";
     private const string WinterHolderName = "WINTER_HOLDER=-4";
 
+    // Comes from the bridge tree gameobject
+    private Animator _bridgeTreeAnimator;
+
     private string _currentlyHeldName;
+    private string _currentEnvironment;
     
     private AudioSource _soundEffect;
 
     private void Awake()
     {
         _currentlyHeldName = string.Empty;
+        _currentEnvironment = _springEnvironment.name;
+        _bridgeTreeAnimator = _bridgeTree.GetComponent<Animator>();
         _soundEffect = GetComponent<AudioSource>();
     }
 
@@ -398,6 +436,8 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     _finalSpringEssence.SetActive(false);
                     _heldSpringEssence.SetActive(true);
 
+                    _gardenGate.Play("gateOpening_anim");
+
                     _soundEffect.PlayOneShot(_essenceSound);
 
                     break;
@@ -406,6 +446,8 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                 {
                     _finalSummerEssence.SetActive(false);
                     _heldSummerEssence.SetActive(true);
+
+                    _finalBridge.Play("bridgeAppearing_anim");
 
                     _soundEffect.PlayOneShot(_essenceSound);
 
@@ -513,7 +555,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
                         _soundEffect.PlayOneShot(_choppingSound);
 
-                        // Tree falling animation
+                        _bridgeTreeAnimator.Play("treeFalling_anim");
 
                         // Remove barrier
 
@@ -527,6 +569,14 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSpringEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
+                        if (_currentEnvironment.Equals(_springEnvironment.name))
+                        {
+                            _springEnvironment.SetActive(false);
+                            _summerEnvironment.SetActive(false);
+
+                            _currentEnvironment = _summerEnvironment.name;
+                        }
+
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
@@ -539,6 +589,14 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSummerEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
+                        if (_currentEnvironment.Equals(_summerEnvironment.name))
+                        {
+                            _summerEnvironment.SetActive(false);
+                            _fallEnvironment.SetActive(false);
+
+                            _currentEnvironment = _fallEnvironment.name;
+                        }
+
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
@@ -550,6 +608,14 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldFallEssence.SetActive(false);
                         _finalFallEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
+
+                        if (_currentEnvironment.Equals(_fallEnvironment.name))
+                        {
+                            _fallEnvironment.SetActive(false);
+                            _winterEnvironment.SetActive(false);
+
+                            _currentEnvironment = _winterEnvironment.name;
+                        }
 
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
@@ -577,7 +643,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
                 _soundEffect.PlayOneShot(_iceMeltingSound);
 
-                // Open gate
+                _winterGate.Play("winterGateOpening_anim");
 
             }
         }
