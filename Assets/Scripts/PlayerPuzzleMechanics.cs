@@ -217,6 +217,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     [SerializeField]
     private AudioClip _essenceHolderSound;
 
+    [SerializeField]
+    private Material _playerStencilView;
+
     /// <summary>
     /// The empty object from which to raycast
     /// </summary>
@@ -267,9 +270,15 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     // Comes from the bridge tree gameobject
     private Animator _bridgeTreeAnimator;
 
+    private int _currentStencilView;
     private string _currentlyHeldName;
     
     private AudioSource _soundEffect;
+
+    private int _springActive;
+    private int _summerActive;
+    private int _fallActive;
+    private int _winterActive;
 
     private void Awake()
     {
@@ -359,30 +368,124 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        int seasonId = int.Parse(other.name.Split('=')[1]);
-
-        switch (seasonId)
+        switch (other.name)
         {
-            case 1:
+            case "StencilSpring":
             {
+                ++_springActive;
+                _currentStencilView = 1;
                 break;
             }
 
-            case 2:
+            case "StencilSummer":
             {
+                ++_summerActive;
+                _currentStencilView = 2;
                 break;
             }
 
-            case 3:
+            case "StencilFall":
             {
+                ++_fallActive;
+                _currentStencilView = 3;
                 break;
             }
 
-            case 4:
+            case "StencilWinter":
             {
+                ++_winterActive;
+                _currentStencilView = 4;
+                break;
+            }
+
+            case "SpringEnvTrigger":
+            {
+                ++_springActive;
+                break;
+            }
+
+            case "SummerEnvTrigger":
+            {
+                ++_summerActive;
+                break;
+            }
+
+            case "FallEnvTrigger":
+            {
+                ++_fallActive;
+                break;
+            }
+
+            case "WinterEnvTrigger":
+            {
+                ++_winterActive;
                 break;
             }
         }
+
+        _playerStencilView.SetInt("_StencilMask", _currentStencilView);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        switch (other.name)
+        {
+            case "StencilSpring":
+            {
+                --_springActive;
+
+                if (_springActive == 0) _currentStencilView = 0;
+                break;
+            }
+
+            case "StencilSummer":
+            {
+                --_summerActive;
+
+                if (_summerActive == 0) _currentStencilView = 0;
+                break;
+            }
+
+            case "StencilFall":
+            {
+                --_fallActive;
+                if (_fallActive == 0) _currentStencilView = 0;
+                break;
+            }
+
+            case "StencilWinter":
+            {
+                --_winterActive;
+                if (_winterActive == 0) _currentStencilView = 0;
+                break;
+            }
+
+            case "SpringEnvTrigger":
+            {
+                --_springActive;
+                break;
+            }
+
+            case "SummerEnvTrigger":
+            {
+                --_summerActive;
+                break;
+            }
+
+            case "FallEnvTrigger":
+            {
+                --_fallActive;
+                break;
+            }
+
+            case "WinterEnvTrigger":
+            {
+                --_winterActive;
+                break;
+            }
+        }
+
+        _playerStencilView.SetInt("_StencilMask", _currentStencilView);
     }
 
     private void TryHold(string objectNameToHold)
