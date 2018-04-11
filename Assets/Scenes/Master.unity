@@ -7258,7 +7258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &195865238
 Transform:
   m_ObjectHideFlags: 0
@@ -23191,7 +23191,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.75
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -23199,7 +23199,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.87
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -23207,7 +23207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.7100614
+      value: -0.9929068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.z
@@ -23215,7 +23215,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7041399
+      value: 0.118895315
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_RootOrder
@@ -23223,7 +23223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.48
+      value: -166.343
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: spreadCustomCurve.m_RotationOrder
@@ -25095,7 +25095,7 @@ MonoBehaviour:
   _essenceSound: {fileID: 8300000, guid: 5c5235b408cf04c67b6d3fbae50c18c1, type: 3}
   _essenceHolderSound: {fileID: 8300000, guid: a7894257df5ca4318b8ebc3d98d4a703, type: 3}
   _rayOrigin: {fileID: 453659658}
-  _maxRayDistance: 1.5
+  _maxRayDistance: 2.2
 --- !u!1 &572230004
 GameObject:
   m_ObjectHideFlags: 0
@@ -52301,7 +52301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1284335521
 Transform:
   m_ObjectHideFlags: 0
@@ -52744,7 +52744,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12696
+  m_Name: pb_Mesh12752
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -74999,7 +74999,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084400577}
   m_LocalRotation: {x: -0, y: -0.7100614, z: -0, w: 0.7041399}
-  m_LocalPosition: {x: -14.12, y: 2.37, z: -10.46}
+  m_LocalPosition: {x: -13.625, y: 1.375, z: 1}
   m_LocalScale: {x: 0.60000026, y: 0.6, z: 0.60000026}
   m_Children: []
   m_Father: {fileID: 195865238}
