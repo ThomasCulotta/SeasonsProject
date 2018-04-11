@@ -190,20 +190,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     [SerializeField]
     private GameObject _fallHolder;
 
-    // TEMP //////////////////////
-    [SerializeField]
-    private GameObject _springEnvironment;
-
-    [SerializeField]
-    private GameObject _summerEnvironment;
-
-    [SerializeField]
-    private GameObject _fallEnvironment;
-
-    [SerializeField]
-    private GameObject _winterEnvironment;
-    // TEMP //////////////////////
-
     /// <summary>
     /// The winter essence holder
     /// </summary>
@@ -282,7 +268,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private Animator _bridgeTreeAnimator;
 
     private string _currentlyHeldName;
-    private string _currentEnvironment;
     
     private AudioSource _soundEffect;
 
@@ -294,11 +279,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
     private void Start()
     {
-        _springEnvironment.SetActive(true);
-        _summerEnvironment.SetActive(false);
-        _fallEnvironment.SetActive(false);
-        _winterEnvironment.SetActive(false);
-        _currentEnvironment = _springEnvironment.name;
         _bridgeTreeAnimator = _bridgeTree.GetComponent<Animator>();
 
         _wateringCan.name   = WateringCanName;
@@ -575,14 +555,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSpringEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        if (_currentEnvironment.Equals(_springEnvironment.name))
-                        {
-                            _springEnvironment.SetActive(false);
-                            _summerEnvironment.SetActive(true);
-
-                            _currentEnvironment = _summerEnvironment.name;
-                        }
-
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
@@ -595,14 +567,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _finalSummerEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
 
-                        if (_currentEnvironment.Equals(_summerEnvironment.name))
-                        {
-                            _summerEnvironment.SetActive(false);
-                            _fallEnvironment.SetActive(true);
-
-                            _currentEnvironment = _fallEnvironment.name;
-                        }
-
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
                         break;
@@ -614,14 +578,6 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                         _heldFallEssence.SetActive(false);
                         _finalFallEssence.SetActive(true);
                         _currentlyHeldName = string.Empty;
-
-                        if (_currentEnvironment.Equals(_fallEnvironment.name))
-                        {
-                            _fallEnvironment.SetActive(false);
-                            _winterEnvironment.SetActive(true);
-
-                            _currentEnvironment = _winterEnvironment.name;
-                        }
 
                         _soundEffect.PlayOneShot(_essenceHolderSound);
 
