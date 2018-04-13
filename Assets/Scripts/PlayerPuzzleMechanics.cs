@@ -197,6 +197,30 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private GameObject _winterEnvironment;
 
     /// <summary>
+    /// The spring workshop exterior.
+    /// </summary>
+    [SerializeField]
+    private GameObject _springWorkshop;
+
+    /// <summary>
+    /// The summer workshop exterior.
+    /// </summary>
+    [SerializeField]
+    private GameObject _summerWorkshop;
+
+    /// <summary>
+    /// The fall workshop exterior.
+    /// </summary>
+    [SerializeField]
+    private GameObject _fallWorkshop;
+
+    /// <summary>
+    /// The winter workshop exterior.
+    /// </summary>
+    [SerializeField]
+    private GameObject _winterWorkshop;
+
+    /// <summary>
     /// Actual piece of shit fix to remove blocking maze piece in the summer doorway.
     /// </summary>
     [SerializeField]
@@ -466,6 +490,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "SpringEnvTrigger":
             {
                 ++_springActive;
+                _springWorkshop.SetActive(true);
                 _summerEnvironment.SetActive(false);
                 _fallEnvironment.SetActive(false);
                 _winterEnvironment.SetActive(false);
@@ -475,6 +500,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "SummerEnvTrigger":
             {
                 ++_summerActive;
+                _summerWorkshop.SetActive(true);
                 _springEnvironment.SetActive(false);
                 _fallEnvironment.SetActive(false);
                 _winterEnvironment.SetActive(false);
@@ -484,6 +510,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "FallEnvTrigger":
             {
                 ++_fallActive;
+                _fallWorkshop.SetActive(true);
                 _springEnvironment.SetActive(false);
                 _summerEnvironment.SetActive(false);
                 _winterEnvironment.SetActive(false);
@@ -493,6 +520,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "WinterEnvTrigger":
             {
                 ++_winterActive;
+                _winterWorkshop.SetActive(true);
                 _springEnvironment.SetActive(false);
                 _summerEnvironment.SetActive(false);
                 _fallEnvironment.SetActive(false);
@@ -564,6 +592,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "SpringEnvTrigger":
             {
                 --_springActive;
+                _springWorkshop.SetActive(false);
                 _summerEnvironment.SetActive(true);
                 _fallEnvironment.SetActive(true);
                 _winterEnvironment.SetActive(true);
@@ -573,6 +602,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "SummerEnvTrigger":
             {
                 --_summerActive;
+                _summerWorkshop.SetActive(false);
                 _springEnvironment.SetActive(true);
                 _fallEnvironment.SetActive(true);
                 _winterEnvironment.SetActive(true);
@@ -582,6 +612,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "FallEnvTrigger":
             {
                 --_fallActive;
+                _fallWorkshop.SetActive(false);
                 _springEnvironment.SetActive(true);
                 _summerEnvironment.SetActive(true);
                 _winterEnvironment.SetActive(true);
@@ -591,6 +622,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             case "WinterEnvTrigger":
             {
                 --_winterActive;
+                _winterWorkshop.SetActive(false);
                 _springEnvironment.SetActive(true);
                 _summerEnvironment.SetActive(true);
                 _fallEnvironment.SetActive(true);
