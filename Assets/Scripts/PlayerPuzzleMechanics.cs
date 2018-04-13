@@ -173,6 +173,60 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private GameObject _finalWinterEssence;
 
     /// <summary>
+    /// The spring environment.
+    /// </summary>
+    [SerializeField]
+    private GameObject _springEnvironment;
+
+    /// <summary>
+    /// The summer environment.
+    /// </summary>
+    [SerializeField]
+    private GameObject _summerEnvironment;
+
+    /// <summary>
+    /// The fall environment.
+    /// </summary>
+    [SerializeField]
+    private GameObject _fallEnvironment;
+
+    /// <summary>
+    /// The winter environment.
+    /// </summary>
+    [SerializeField]
+    private GameObject _winterEnvironment;
+
+    /// <summary>
+    /// Actual piece of shit fix to remove blocking maze piece in the summer doorway.
+    /// </summary>
+    [SerializeField]
+    private GameObject _mazeBlocker;
+
+    /// <summary>
+    /// The spring environment trigger.
+    /// </summary>
+    [SerializeField]
+    private GameObject _springEnvTrigger;
+
+    /// <summary>
+    /// The summer environment trigger.
+    /// </summary>
+    [SerializeField]
+    private GameObject _summerEnvTrigger;
+
+    /// <summary>
+    /// The fall environment trigger.
+    /// </summary>
+    [SerializeField]
+    private GameObject _fallEnvTrigger;
+
+    /// <summary>
+    /// The winter environment trigger.
+    /// </summary>
+    [SerializeField]
+    private GameObject _winterEnvTrigger;
+
+    /// <summary>
     /// The spring essence holder
     /// </summary>
     [SerializeField]
@@ -370,10 +424,13 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     {
         switch (other.name)
         {
+            // Stencil triggers will set the player stencil mask and enable the environment trigger when leaving the workshop
             case "StencilSpring":
             {
                 ++_springActive;
                 _currentStencilView = 1;
+
+                _springEnvTrigger.SetActive(true);
                 break;
             }
 
@@ -381,6 +438,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             {
                 ++_summerActive;
                 _currentStencilView = 2;
+
+                _summerEnvTrigger.SetActive(true);
+                _mazeBlocker.SetActive(false);
                 break;
             }
 
@@ -388,6 +448,8 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             {
                 ++_fallActive;
                 _currentStencilView = 3;
+
+                _fallEnvTrigger.SetActive(true);
                 break;
             }
 
@@ -395,30 +457,45 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             {
                 ++_winterActive;
                 _currentStencilView = 4;
+
+                _winterEnvTrigger.SetActive(true);
                 break;
             }
 
+            // Environment triggers will disable other environments when leaving the workshop
             case "SpringEnvTrigger":
             {
                 ++_springActive;
+                _summerEnvironment.SetActive(false);
+                _fallEnvironment.SetActive(false);
+                _winterEnvironment.SetActive(false);
                 break;
             }
 
             case "SummerEnvTrigger":
             {
                 ++_summerActive;
+                _springEnvironment.SetActive(false);
+                _fallEnvironment.SetActive(false);
+                _winterEnvironment.SetActive(false);
                 break;
             }
 
             case "FallEnvTrigger":
             {
                 ++_fallActive;
+                _springEnvironment.SetActive(false);
+                _summerEnvironment.SetActive(false);
+                _winterEnvironment.SetActive(false);
                 break;
             }
 
             case "WinterEnvTrigger":
             {
                 ++_winterActive;
+                _springEnvironment.SetActive(false);
+                _summerEnvironment.SetActive(false);
+                _fallEnvironment.SetActive(false);
                 break;
             }
         }
@@ -430,11 +507,18 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     {
         switch (other.name)
         {
+            // Stencil triggers will disable the player stencil mask and the environment trigger when entering the workshop
             case "StencilSpring":
             {
                 --_springActive;
 
-                if (_springActive == 0) _currentStencilView = 0;
+                if (_springActive == 0)
+                {
+                    _currentStencilView = 0;
+
+                    _springEnvTrigger.SetActive(false);
+                }
+
                 break;
             }
 
@@ -442,45 +526,74 @@ public class PlayerPuzzleMechanics : MonoBehaviour
             {
                 --_summerActive;
 
-                if (_summerActive == 0) _currentStencilView = 0;
+                if (_summerActive == 0)
+                {
+                    _currentStencilView = 0;
+
+                    _summerEnvTrigger.SetActive(false);
+                    _mazeBlocker.SetActive(true);
+                }
                 break;
             }
 
             case "StencilFall":
             {
                 --_fallActive;
-                if (_fallActive == 0) _currentStencilView = 0;
+                if (_fallActive == 0)
+                {
+                    _currentStencilView = 0;
+
+                    _fallEnvTrigger.SetActive(false);
+                }
                 break;
             }
 
             case "StencilWinter":
             {
                 --_winterActive;
-                if (_winterActive == 0) _currentStencilView = 0;
+                if (_winterActive == 0)
+                {
+                    _currentStencilView = 0;
+
+                    _winterEnvTrigger.SetActive(false);
+                }
                 break;
             }
 
+            // Environment triggers will re-enable other environments when entering the workshop
             case "SpringEnvTrigger":
             {
                 --_springActive;
+                _summerEnvironment.SetActive(true);
+                _fallEnvironment.SetActive(true);
+                _winterEnvironment.SetActive(true);
                 break;
             }
 
             case "SummerEnvTrigger":
             {
                 --_summerActive;
+                _springEnvironment.SetActive(true);
+                _fallEnvironment.SetActive(true);
+                _winterEnvironment.SetActive(true);
                 break;
             }
 
             case "FallEnvTrigger":
             {
                 --_fallActive;
+                _springEnvironment.SetActive(true);
+                _summerEnvironment.SetActive(true);
+                _winterEnvironment.SetActive(true);
                 break;
             }
 
             case "WinterEnvTrigger":
             {
                 --_winterActive;
+                _springEnvironment.SetActive(true);
+                _summerEnvironment.SetActive(true);
+                _fallEnvironment.SetActive(true);
                 break;
             }
         }
