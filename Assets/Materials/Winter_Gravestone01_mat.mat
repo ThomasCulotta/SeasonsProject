@@ -36,18 +36,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Glossiness: 0.057
-    - _GlossinessSnow: 0.02
+    - _GlossinessSnow: 0.35
     - _Height: 0.02
     - _Metallic: 0
     - _MetallicSnow: 0
-    - _RimPower: 2.16
+    - _RimPower: 0.81
     - _Shininess: 0.078125
     - _SnowSize: 1
     - _StencilMask: 4
     m_Colors:
     - _Color: {r: 0.7352941, g: 0.7352941, b: 0.7352941, a: 1}
-    - _RimColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
+    - _RimColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _SnowAngle: {r: 0.15, g: 1, b: 0.37, a: 1}
-    - _SnowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SnowColor: {r: 0.74264705, g: 0.74264705, b: 0.74264705, a: 1}
     - _SpecColor: {r: 0, g: 0.24762551, b: 0.5447761, a: 1}
-    - _TColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TColor: {r: 1, g: 1, b: 1, a: 1}
