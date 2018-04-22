@@ -367,6 +367,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     private void Start()
     {
         _bridgeTreeAnimator = _bridgeTree.GetComponent<Animator>();
+        _playerStencilView.SetInt("_StencilMask", 0);
 
         _wateringCan.name   = WateringCanName;
         _fountainWater.name = FountainWaterName;
@@ -436,7 +437,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                     case FallHolderName:
                     case WinterHolderName:
                     {
-                        TryActivate(hit.collider.name);
+                        TryActivate(hitName);
                         break;
                     }
                 }
@@ -817,7 +818,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 
                         _soundEffect.PlayOneShot(_choppingSound);
 
-                        _bridgeTreeAnimator.Play("treeFalling_anim");
+                        _bridgeTreeAnimator.Play("treeFallDown_anim");
 
                         // Remove barrier
 
