@@ -67,7 +67,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SrcBlend: 1
-    - _StencilMask: 4
+    - _StencilMask: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
