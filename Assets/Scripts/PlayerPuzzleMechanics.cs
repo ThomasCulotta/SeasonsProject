@@ -298,6 +298,15 @@ public class PlayerPuzzleMechanics : MonoBehaviour
     [SerializeField]
     private Material _playerStencilView;
 
+    [SerializeField]
+    private Material _mazeWalls;
+    
+    [SerializeField]
+    private Material _mazeFloor;
+
+    [SerializeField]
+    private Material _mazeDeadFloor;
+
     /// <summary>
     /// The empty object from which to raycast
     /// </summary>
@@ -399,7 +408,7 @@ public class PlayerPuzzleMechanics : MonoBehaviour
 #if DEBUG
         Debug.DrawLine(_rayOrigin.position, _rayOrigin.position + _rayOrigin.forward * _maxRayDistance, Color.magenta);
 #endif
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hit;
             if (Physics.Raycast(_rayOrigin.position, _rayOrigin.forward, out hit, _maxRayDistance))
@@ -495,6 +504,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                 _summerEnvironment.SetActive(false);
                 _fallEnvironment.SetActive(false);
                 _winterEnvironment.SetActive(false);
+                _mazeWalls.renderQueue = 2000;
+                _mazeFloor.renderQueue = 2000;
+                _mazeDeadFloor.renderQueue = 2000;
                 break;
             }
 
@@ -597,6 +609,9 @@ public class PlayerPuzzleMechanics : MonoBehaviour
                 _summerEnvironment.SetActive(true);
                 _fallEnvironment.SetActive(true);
                 _winterEnvironment.SetActive(true);
+                _mazeWalls.renderQueue = 2501;
+                _mazeFloor.renderQueue = 2501;
+                _mazeDeadFloor.renderQueue = 2501;
                 break;
             }
 
